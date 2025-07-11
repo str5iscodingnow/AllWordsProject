@@ -48,7 +48,7 @@ $db->close();
             }
 
             body {
-                background-color: rgb(100, 2, 2);
+                background: linear-gradient(to right, #8B0000 0%, #8B0000 25%, #B8860B 25%, #B8860B 50%, #006400 50%, #006400 75%, #00008B 75%, #00008B 100%);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -92,9 +92,21 @@ $db->close();
             @media (max-width: 1400px) {
                 .box-container {
                     flex-direction: column;
-                    height: 220px;
+                    height: 240px;
                     justify-content: space-between;
                 }
+            }
+
+            .backarrow {
+                width: 50px;
+                height: 50px;
+                padding: 5px;
+                color: white;
+                font-size: 40px;
+                user-select: none;
+                cursor: pointer;
+                transform: scaleX(-1);
+                margin-left: 10px;
             }
             
             .welcome {
@@ -242,6 +254,12 @@ $db->close();
             background: #f2c4c4;
             }
 
+            @media (max-width: 600px) {
+                .allwordscontainer {
+                    width: 250px;
+                }
+            }
+
             .singleword {
                 display: flex;
                 align-items: center;
@@ -280,13 +298,20 @@ $db->close();
                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             }
 
+        
+
         </style>
     </head>
     <body>
 
+        
+
         <div class="firsthalf">
 
             <div class="box-container">
+                <a class="backarrow" href="index.php">
+                    ➯
+                </a>
                 <div class="welcome">
                     All Words - pagina admin
                 </div>
@@ -350,6 +375,8 @@ $db->close();
 
         <script>
 
+            
+
             let maketableempty = document.getElementById('maketableempty');
             let sureaboutit = document.getElementById('sureaboutit');
             let aggiornabtn = document.getElementById('aggiornabtn');
@@ -407,7 +434,7 @@ $db->close();
 
             function interazioneTasti(tasto1, tasto2, tasto3) {
 
-                tasto1.addEventListener('click', ()=> {
+                tasto1.addEventListener('click', () => {
                     location.reload();
                 });
 
@@ -433,7 +460,7 @@ $db->close();
                     if (sureaboutit.textContent == 'CONFERMA') {
                         fetch('svuota_tabella.php').then(() => location.reload());
                     }
-                })
+                });
 
             }
 
@@ -460,13 +487,24 @@ $db->close();
                         return;
                     }
 
-                    const inversoOriginale = [...ordineIniziale].reverse();
+                    const singleWords = Array.from(document.querySelectorAll('.singleword'));
 
-                    allwordscontainer.replaceChildren(...inversoOriginale);
+                    const ordinatiPerRecenza = singleWords.sort((a, b) => {
+                        const parolaA = a.textContent.split(' (')[0];
+                        const parolaB = b.textContent.split(' (')[0];
 
+                        const ultimoIndiceA = valori.lastIndexOf(parolaA);
+                        const ultimoIndiceB = valori.lastIndexOf(parolaB);
+
+                        return ultimoIndiceB - ultimoIndiceA;
+                    });
+
+                    allwordscontainer.replaceChildren(...ordinatiPerRecenza);
                     invertito = true;
                 });
             }
+
+            
             
             aggiungiParolaAContainer();
 

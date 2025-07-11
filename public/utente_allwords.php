@@ -52,7 +52,7 @@ $db->close();
             }
 
             body {
-                background-color: rgb(100, 2, 2);
+                background: linear-gradient(to right, #8B0000 0%, #8B0000 25%, #B8860B 25%, #B8860B 50%, #006400 50%, #006400 75%, #00008B 75%, #00008B 100%);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -96,9 +96,21 @@ $db->close();
             @media (max-width: 1400px) {
                 .box-container {
                     flex-direction: column;
-                    height: 120px;
+                    height: 140px;
                     justify-content: space-between;
                 }
+            }
+
+            .backarrow {
+                width: 50px;
+                height: 50px;
+                padding: 5px;
+                color: white;
+                font-size: 40px;
+                user-select: none;
+                cursor: pointer;
+                transform: scaleX(-1);
+                margin-left: 10px;
             }
 
             .welcome {
@@ -166,7 +178,6 @@ $db->close();
                 align-content: center;
                 max-width: 700px;
                 margin-bottom: 20px;
-                background-color: rgb(100, 2, 2);
                 color: white;
                 text-shadow: 0px 0px 5px white;
                 font-size: 25px;
@@ -224,6 +235,9 @@ $db->close();
         <div class="firsthalf">
 
             <div class="box-container">
+                <a class="backarrow" href="index.php">
+                    ➯
+                </a>
                 <div class="welcome">
                     All Words - pagina utente
                 </div>
