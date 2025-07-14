@@ -1,5 +1,5 @@
 # Ignora file di ambiente
-.env
+config.env
 
 # Ignora la cartella del composer (se usi librerie PHP)
 vendor/
