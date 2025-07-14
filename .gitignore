@@ -2,7 +2,6 @@
 config.env
 
 # Ignora la cartella del composer (se usi librerie PHP)
-vendor/
 
 # Ignora file temporanei/macOS
 .DS_Store
